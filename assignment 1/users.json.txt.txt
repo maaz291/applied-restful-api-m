@@ -1,0 +1,27 @@
+module.exports = {
+  user1: {
+    name : abc,
+    age : 25,
+    email : abc@gmail.com
+  },
+
+  user2:  {
+    name : xyz,
+    age : 27,
+    email : xyz@gmail.com
+  },
+
+  user3:  {
+    name : pqrs,
+    age : 29,
+    email : pqrs@gmail.com
+  },
+
+
+  user4:  {
+    name : lmn,
+    age : 31,
+    email : lmn@gmail.com
+  },
+
+}
