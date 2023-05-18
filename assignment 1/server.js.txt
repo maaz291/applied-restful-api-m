@@ -1,0 +1,31 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Endpoint 1
+app.get('/', (req, res) => {
+  res.send('Maaz Rahman');
+});
+
+// Endpoint 2
+app.get('/users', (req, res) => {
+  const users = ['User 1', 'User 2', 'User 3', 'User 4'];
+  res.json(users);
+});
+
+// Endpoint 3
+app.post('/users', (req, res) => {
+  res.send('New user is created!');
+});
+
+// Endpoint 4
+app.get('/products/:id', (req, res) => {
+  const productId = req.params.id;
+  const product = { id: productId, name: 'Product 1' };
+  res.json(product);
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
