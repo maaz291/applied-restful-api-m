@@ -1,0 +1,37 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Sample user data
+const users = [
+  { name:'virat', touchdownPasses:15, rushingYards:515,fieldgoalsmade:3, fieldgoalsmissed:7, sacks:2, catchesmade:4 },
+  { name:'dhoni', touchdownPasses:9, rushingYards:200, fieldgoalsmade:7, fieldgoalsmissed: 0, sacks: 0, catchesmade:5},
+  { name:'siraj', touchdownPasses:9, rushingYards:70, fieldgoalsmade:3, fieldgoalsmissed:1, sacks:0, catchesmade:8}
+];
+
+app.post('/query', (req, res) => {
+  const query = req.body;
+
+  if (query === 'mostTouchdownPasses') {
+    const mostTouchdownPasses = users.reduce((max, user) => (user.touchdownsThrown > max.touchdownsThrown) ? user : max);
+    res.json(mostTouchdownPasses);
+  } else if (query === 'mostRushingYards') {
+    const mostRushingYards = users.reduce((max, user) => (user.rushingYards > max.rushingYards) ? user : max);
+    res.json(mostRushingYards);
+  } else if (query === 'leastRushingYards') {
+    const leastRushingYards = users.reduce((min, user) => (user.rushingYards < min.rushingYards) ? user : min);
+    res.json(leastRushingYards);
+  } else if (query === 'mostFieldGoalsMade') {
+    const sortedByFieldGoalsMade = users.sort((a, b) => b.fieldGoalsMade - a.fieldGoalsMade);
+    res.json(sortedByFieldGoalsMade);
+  } else if (query === 'mostSacks') {
+    const mostSacks = users.reduce((max, user) => (user.sacks > max.sacks) ? user : max);
+    res.json(mostSacks);
+  } else {
+    res.status(400).send('Invalid query');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
